@@ -6,100 +6,150 @@
 <title>Một món quà dành cho bạn</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;display:flex;justify-content:center;align-items:center;font-family:Arial,sans-serif;background:#f5f7fa;color:#202124}
-.box{width:440px;max-width:90%;background:#fff;padding:36px;border-radius:14px;box-shadow:0 10px 35px rgba(0,0,0,.09);text-align:center}
-.icon{font-size:46px;margin-bottom:14px}
-h2{margin:0 0 12px;font-size:23px}
-p{color:#666;line-height:1.6;margin:8px 0}
-.step{display:none}.step.active{display:block}
-button{width:100%;padding:14px;margin-top:22px;border:0;border-radius:8px;background:#1a73e8;color:#fff;font-size:16px;cursor:pointer}
-button:hover{background:#1557b0}
-.progress{width:100%;height:10px;margin-top:28px;background:#e5e7eb;border-radius:10px;overflow:hidden}
-.bar{width:0;height:100%;background:#1a73e8;transition:width .25s linear}
-.percent{margin-top:14px;color:#555;font-size:14px}
-.footer{margin-top:26px;font-size:12px;color:#aaa}
-#jumpscare{display:none;position:fixed;inset:0;width:100vw;height:100vh;background:#000;z-index:9999;object-fit:cover}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Arial,sans-serif;
+  background:#f7f7f7;
+  color:#222;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.box{
+  width:420px;
+  max-width:90%;
+  background:#fff;
+  padding:35px;
+  border-radius:14px;
+  box-shadow:0 8px 30px rgba(0,0,0,.08);
+  text-align:center;
+}
+.icon{font-size:42px;margin-bottom:15px}
+h2{margin:0 0 12px;font-size:22px}
+p{color:#666;line-height:1.6;margin:10px 0 22px}
+button{
+  border:0;
+  border-radius:8px;
+  padding:12px 24px;
+  font-size:16px;
+  cursor:pointer;
+  background:#222;
+  color:#fff;
+}
+button:hover{opacity:.9}
+.hidden{display:none}
+.progress{
+  height:8px;
+  background:#e8e8e8;
+  border-radius:10px;
+  overflow:hidden;
+  margin-top:20px;
+}
+.bar{
+  height:100%;
+  width:0;
+  background:#222;
+  transition:width .1s linear;
+}
+#loadingText{margin-top:12px;color:#777}
+#videoScreen{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+#videoScreen video{
+  width:100vw;
+  height:100vh;
+  object-fit:contain;
+  background:#000;
+}
 </style>
 </head>
+
 <body>
-<div class="box">
-  <div class="step active" id="step1">
-    <div class="icon">🌷</div>
-    <h2>Bạn khỏe không?</h2>
-    <p>Dạo này bạn có ổn không?</p>
-    <p>Có những ngày mọi thứ hơi mệt mỏi một chút. Nhưng dù thế nào, bạn cũng đã cố gắng rất nhiều rồi.</p>
-    <button onclick="nextStep()">Mình vẫn ổn ❤️</button>
-  </div>
 
-  <div class="step" id="step2">
-    <div class="icon">💌</div>
-    <h2>Một chút dành cho bạn</h2>
-    <p>Nếu hôm nay bạn đang không vui, thì mong rằng mọi chuyện sẽ sớm tốt hơn.</p>
-    <p>Bạn không cần phải lúc nào cũng mạnh mẽ. Hãy nghỉ ngơi khi bạn cần nhé.</p>
-    <button onclick="nextStep2()">Cảm ơn bạn 🌷</button>
-  </div>
-
-  <div class="step" id="step3">
-    <div class="icon">🎁</div>
-    <h2>Một món quà dành cho bạn</h2>
-    <p>Mình có một món quà nhỏ muốn gửi bạn.</p>
-    <p>Không có gì đặc biệt đâu... chỉ là một chút bất ngờ thôi. 😊</p>
-    <button onclick="startGift()">Nhận món quà 🎁</button>
-  </div>
-
-  <div class="step" id="step4">
-    <div class="icon">🎀</div>
-    <h2>Đang chuẩn bị...</h2>
-    <p id="loadingText">Món quà đang được chuẩn bị cho bạn.</p>
-    <div class="progress"><div class="bar" id="bar"></div></div>
-    <div class="percent" id="percent">0%</div>
-  </div>
-
-  <div class="footer">Một món quà nhỏ dành riêng cho bạn ❤️</div>
+<div class="box" id="step1">
+  <div class="icon">💌</div>
+  <h2>Bạn khỏe không?</h2>
+  <p>Dạo này mọi thứ ổn chứ?</p>
+  <button onclick="nextStep(1)">Mình ổn</button>
 </div>
 
-<video id="jumpscare" src="jumpscare.mp4" playsinline preload="auto"></video>
+<div class="box hidden" id="step2">
+  <div class="icon">🌿</div>
+  <h2>Nếu hôm nay không ổn cũng không sao.</h2>
+  <p>Đôi khi chúng ta chỉ cần một chút thời gian để nghỉ ngơi. Mong rằng mọi chuyện sẽ sớm tốt hơn với bạn.</p>
+  <button onclick="nextStep(2)">Cảm ơn nhé</button>
+</div>
+
+<div class="box hidden" id="step3">
+  <div class="icon">🎁</div>
+  <h2>Đây là một món quà dành cho bạn.</h2>
+  <p>Hy vọng nó sẽ làm bạn vui một chút.</p>
+  <button onclick="startLoading()">Mở quà</button>
+</div>
+
+<div class="box hidden" id="loading">
+  <div class="icon">🎁</div>
+  <h2>Đang chuẩn bị món quà...</h2>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+  <div id="loadingText">0%</div>
+</div>
+
+<div id="videoScreen">
+  <video id="giftVideo" src="jumpscare.mp4" playsinline preload="auto"></video>
+</div>
 
 <script>
-function nextStep(){
-  step1.classList.remove("active");
-  step2.classList.add("active");
+function hideAll(){
+  document.querySelectorAll('.box').forEach(x=>x.classList.add('hidden'));
 }
-function nextStep2(){
-  step2.classList.remove("active");
-  step3.classList.add("active");
+
+function nextStep(n){
+  hideAll();
+  document.getElementById('step'+(n+1)).classList.remove('hidden');
 }
-function startGift(){
-  step3.classList.remove("active");
-  step4.classList.add("active");
+
+function startLoading(){
+  hideAll();
+  document.getElementById('loading').classList.remove('hidden');
 
   let progress=0;
-  const interval=setInterval(()=>{
-    progress += Math.floor(Math.random()*7)+3;
-    if(progress>100) progress=100;
+  const bar=document.getElementById('bar');
+  const text=document.getElementById('loadingText');
 
-    bar.style.width=progress+"%";
-    percent.textContent=progress+"%";
-
-    if(progress>=20) loadingText.textContent="Chuẩn bị một chút nhé...";
-    if(progress>=45) loadingText.textContent="Món quà sắp hoàn thành rồi...";
-    if(progress>=70) loadingText.textContent="Sắp xong rồi...";
-    if(progress>=90) loadingText.textContent="Hoàn tất! ❤️";
+  const timer=setInterval(()=>{
+    progress++;
+    bar.style.width=progress+'%';
+    text.textContent=progress+'%';
 
     if(progress>=100){
-      clearInterval(interval);
-      setTimeout(()=>{
-        jumpscare.style.display="block";
-        jumpscare.muted=false;
-        jumpscare.controls=false;
-        jumpscare.play().catch(()=>{
-          jumpscare.muted=true;
-          jumpscare.play();
-        });
-      },700);
+      clearInterval(timer);
+      setTimeout(playGift,250);
     }
-  },350);
+  },35);
+}
+
+function playGift(){
+  const screen=document.getElementById('videoScreen');
+  const video=document.getElementById('giftVideo');
+
+  screen.style.display='flex';
+  video.currentTime=0;
+
+  // Người dùng vừa bấm "Mở quà", nên trình duyệt thường cho phép autoplay có tiếng.
+  const p=video.play();
+  if(p) p.catch(()=>{
+    // Nếu trình duyệt vẫn chặn, cho phép bắt đầu bằng một lần chạm.
+    video.muted=false;
+  });
 }
 </script>
+
 </body>
 </html>
