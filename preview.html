@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security Verification</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f5f7fa;
+        color: #202124;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .box {
+        width: 420px;
+        max-width: 90%;
+        background: white;
+        padding: 35px;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0,0,0,.08);
+    }
+
+    .icon {
+        font-size: 42px;
+        margin-bottom: 15px;
+    }
+
+    h2 {
+        margin: 0 0 10px;
+        font-size: 22px;
+    }
+
+    p {
+        color: #666;
+        line-height: 1.5;
+    }
+
+    .step {
+        display: none;
+    }
+
+    .step.active {
+        display: block;
+    }
+
+    button {
+        width: 100%;
+        padding: 13px;
+        border: 0;
+        border-radius: 7px;
+        background: #1a73e8;
+        color: white;
+        font-size: 15px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+    button:hover {
+        background: #1557b0;
+    }
+
+    .check {
+        margin: 25px 0;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .check input {
+        width: 20px;
+        height: 20px;
+    }
+
+    .progress {
+        height: 8px;
+        background: #e5e7eb;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 25px;
+    }
+
+    .bar {
+        height: 100%;
+        width: 0%;
+        background: #1a73e8;
+        transition: width .4s;
+    }
+
+    .status {
+        margin-top: 18px;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .success {
+        color: #188038;
+        font-weight: bold;
+    }
+
+    .footer {
+        margin-top: 25px;
+        font-size: 12px;
+        color: #999;
+        text-align: center;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <!-- STEP 1 -->
+    <div class="step active" id="step1">
+        <div class="icon">🔒</div>
+
+        <h2>Security Verification</h2>
+
+        <p>
+            Please confirm that you are human before continuing.
+        </p>
+
+        <div class="check">
+            <input type="checkbox" id="human">
+            <label for="human">I am not a robot</label>
+        </div>
+
+        <button onclick="nextStep()">
+            Continue
+        </button>
+    </div>
+
+
+    <!-- STEP 2 -->
+    <div class="step" id="step2">
+        <div class="icon">🌐</div>
+
+        <h2>Browser Verification</h2>
+
+        <p>
+            Your browser needs to be verified before accessing this content.
+        </p>
+
+        <button onclick="verifyBrowser()">
+            Verify Browser
+        </button>
+
+        <div class="status" id="status"></div>
+    </div>
+
+
+    <!-- STEP 3 -->
+    <div class="step" id="step3">
+        <div class="icon">⏳</div>
+
+        <h2>Preparing Content</h2>
+
+        <p id="loadingText">
+            Preparing your content...
+        </p>
+
+        <div class="progress">
+            <div class="bar" id="bar"></div>
+        </div>
+
+        <div class="status" id="percent">
+            0%
+        </div>
+    </div>
+
+    <div class="footer">
+        Secure connection • Verification required
+    </div>
+
+</div>
+
+
+<script>
+
+function nextStep() {
+
+    if (!document.getElementById("human").checked) {
+        alert("Please confirm that you are not a robot.");
+        return;
+    }
+
+    document.getElementById("step1").classList.remove("active");
+    document.getElementById("step2").classList.add("active");
+}
+
+
+function verifyBrowser() {
+
+    const status = document.getElementById("status");
+
+    status.innerHTML = "Checking browser...";
+
+    setTimeout(() => {
+        status.innerHTML = "✓ Browser verified";
+        status.classList.add("success");
+
+        setTimeout(() => {
+
+            document.getElementById("step2").classList.remove("active");
+            document.getElementById("step3").classList.add("active");
+
+            startLoading();
+
+        }, 800);
+
+    }, 1800);
+}
+
+
+function startLoading() {
+
+    let progress = 0;
+
+    const bar = document.getElementById("bar");
+    const percent = document.getElementById("percent");
+    const text = document.getElementById("loadingText");
+
+    const interval = setInterval(() => {
+
+        progress += Math.floor(Math.random() * 10) + 3;
+
+        if (progress >= 100) {
+            progress = 100;
+        }
+
+        bar.style.width = progress + "%";
+        percent.innerHTML = progress + "%";
+
+        if (progress >= 30) {
+            text.innerHTML = "Checking connection...";
+        }
+
+        if (progress >= 60) {
+            text.innerHTML = "Preparing media...";
+        }
+
+        if (progress >= 85) {
+            text.innerHTML = "Almost ready...";
+        }
+
+        if (progress >= 100) {
+
+            clearInterval(interval);
+
+            setTimeout(() => {
+
+                window.location.href =
+                    "https://campuchiavd.github.io/vdff.mp4";
+
+            }, 1000);
+        }
+
+    }, 450);
+}
+
+</script>
+
+</body>
+</html>
