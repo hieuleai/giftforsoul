@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Một điều dành cho bạn</title>
-
+<title>Một món quà dành cho bạn</title>
 <style>
 * { box-sizing: border-box; }
 
@@ -29,15 +28,9 @@ body {
     text-align: center;
 }
 
-.icon {
-    font-size: 46px;
-    margin-bottom: 14px;
-}
+.icon { font-size: 46px; margin-bottom: 14px; }
 
-h2 {
-    margin: 0 0 12px;
-    font-size: 23px;
-}
+h2 { margin: 0 0 12px; font-size: 23px; }
 
 p {
     color: #666;
@@ -60,9 +53,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
-    background: #1557b0;
-}
+button:hover { background: #1557b0; }
 
 .progress {
     width: 100%;
@@ -91,6 +82,17 @@ button:hover {
     font-size: 12px;
     color: #aaa;
 }
+
+#jumpscare {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 9999;
+    object-fit: cover;
+}
 </style>
 </head>
 
@@ -98,77 +100,43 @@ button:hover {
 
 <div class="box">
 
-    <!-- BƯỚC 1 -->
     <div class="step active" id="step1">
         <div class="icon">🌷</div>
-
         <h2>Bạn khỏe không?</h2>
-
         <p>Dạo này bạn có ổn không?</p>
-
         <p>
             Có những ngày mọi thứ hơi mệt mỏi một chút.
             Nhưng dù thế nào, bạn cũng đã cố gắng rất nhiều rồi.
         </p>
-
-        <button onclick="nextStep()">
-            Mình vẫn ổn ❤️
-        </button>
+        <button onclick="nextStep()">Mình vẫn ổn ❤️</button>
     </div>
 
-
-    <!-- BƯỚC 2 -->
     <div class="step" id="step2">
         <div class="icon">💌</div>
-
         <h2>Một chút dành cho bạn</h2>
-
         <p>
             Nếu hôm nay bạn đang không vui,
             thì mong rằng mọi chuyện sẽ sớm tốt hơn.
         </p>
-
         <p>
             Bạn không cần phải lúc nào cũng mạnh mẽ.
             Hãy nghỉ ngơi khi bạn cần nhé.
         </p>
-
-        <button onclick="nextStep2()">
-            Cảm ơn bạn 🌷
-        </button>
+        <button onclick="nextStep2()">Cảm ơn bạn 🌷</button>
     </div>
 
-
-    <!-- BƯỚC 3 -->
     <div class="step" id="step3">
         <div class="icon">🎁</div>
-
         <h2>Một món quà dành cho bạn</h2>
-
-        <p>
-            Mình có một món quà nhỏ muốn gửi bạn.
-        </p>
-
-        <p>
-            Không có gì đặc biệt đâu...
-            chỉ là một chút bất ngờ thôi. 😊
-        </p>
-
-        <button onclick="startGift()">
-            Nhận món quà 🎁
-        </button>
+        <p>Mình có một món quà nhỏ muốn gửi bạn.</p>
+        <p>Không có gì đặc biệt đâu... chỉ là một chút bất ngờ thôi. 😊</p>
+        <button onclick="startGift()">Nhận món quà 🎁</button>
     </div>
 
-
-    <!-- BƯỚC 4 -->
     <div class="step" id="step4">
         <div class="icon">🎀</div>
-
         <h2>Đang chuẩn bị...</h2>
-
-        <p id="loadingText">
-            Món quà đang được chuẩn bị cho bạn.
-        </p>
+        <p id="loadingText">Món quà đang được chuẩn bị cho bạn.</p>
 
         <div class="progress">
             <div class="bar" id="bar"></div>
@@ -177,16 +145,13 @@ button:hover {
         <div class="percent" id="percent">0%</div>
     </div>
 
-
-    <div class="footer">
-        Một món quà nhỏ dành riêng cho bạn ❤️
-    </div>
-
+    <div class="footer">Một món quà nhỏ dành riêng cho bạn ❤️</div>
 </div>
 
+<!-- Đặt vdff.mp4 cùng thư mục với index.html -->
+<video id="jumpscare" src="vdff.mp4" playsinline preload="auto"></video>
 
 <script>
-
 function nextStep() {
     document.getElementById("step1").classList.remove("active");
     document.getElementById("step2").classList.add("active");
@@ -198,54 +163,47 @@ function nextStep2() {
 }
 
 function startGift() {
-
     document.getElementById("step3").classList.remove("active");
     document.getElementById("step4").classList.add("active");
 
     let progress = 0;
-
     const bar = document.getElementById("bar");
     const percent = document.getElementById("percent");
     const loadingText = document.getElementById("loadingText");
 
     const interval = setInterval(() => {
-
         progress += Math.floor(Math.random() * 7) + 3;
-
-        if (progress >= 100) {
-            progress = 100;
-        }
+        if (progress >= 100) progress = 100;
 
         bar.style.width = progress + "%";
         percent.textContent = progress + "%";
 
-        if (progress >= 20)
-            loadingText.textContent = "Chuẩn bị một chút nhé...";
-
-        if (progress >= 45)
-            loadingText.textContent = "Món quà sắp hoàn thành rồi...";
-
-        if (progress >= 70)
-            loadingText.textContent = "Sắp xong rồi...";
-
-        if (progress >= 90)
-            loadingText.textContent = "Hoàn tất! ❤️";
+        if (progress >= 20) loadingText.textContent = "Chuẩn bị một chút nhé...";
+        if (progress >= 45) loadingText.textContent = "Món quà sắp hoàn thành rồi...";
+        if (progress >= 70) loadingText.textContent = "Sắp xong rồi...";
+        if (progress >= 90) loadingText.textContent = "Hoàn tất! ❤️";
 
         if (progress >= 100) {
-
             clearInterval(interval);
 
             setTimeout(() => {
+                const video = document.getElementById("jumpscare");
 
-                window.location.href =
-                    "https://campuchiavd.github.io/vdff.mp4";
+                video.style.display = "block";
+                video.muted = false;
+                video.controls = false;
 
-            }, 900);
+                // Việc người dùng vừa bấm nút "Nhận món quà"
+                // giúp trình duyệt cho phép phát video.
+                video.play().catch(() => {
+                    // Nếu trình duyệt chặn âm thanh, phát lại không tiếng.
+                    video.muted = true;
+                    video.play();
+                });
+            }, 700);
         }
-
     }, 350);
 }
-
 </script>
 
 </body>
