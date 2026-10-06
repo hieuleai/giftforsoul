@@ -5,206 +5,101 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Một món quà dành cho bạn</title>
 <style>
-* { box-sizing: border-box; }
-
-body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    background: #f5f7fa;
-    color: #202124;
-}
-
-.box {
-    width: 440px;
-    max-width: 90%;
-    background: #fff;
-    padding: 36px;
-    border-radius: 14px;
-    box-shadow: 0 10px 35px rgba(0,0,0,.09);
-    text-align: center;
-}
-
-.icon { font-size: 46px; margin-bottom: 14px; }
-
-h2 { margin: 0 0 12px; font-size: 23px; }
-
-p {
-    color: #666;
-    line-height: 1.6;
-    margin: 8px 0;
-}
-
-.step { display: none; }
-.step.active { display: block; }
-
-button {
-    width: 100%;
-    padding: 14px;
-    margin-top: 22px;
-    border: 0;
-    border-radius: 8px;
-    background: #1a73e8;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover { background: #1557b0; }
-
-.progress {
-    width: 100%;
-    height: 10px;
-    margin-top: 28px;
-    background: #e5e7eb;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.bar {
-    width: 0%;
-    height: 100%;
-    background: #1a73e8;
-    transition: width .25s linear;
-}
-
-.percent {
-    margin-top: 14px;
-    color: #555;
-    font-size: 14px;
-}
-
-.footer {
-    margin-top: 26px;
-    font-size: 12px;
-    color: #aaa;
-}
-
-#jumpscare {
-    display: none;
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    background: #000;
-    z-index: 9999;
-    object-fit: cover;
-}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;justify-content:center;align-items:center;font-family:Arial,sans-serif;background:#f5f7fa;color:#202124}
+.box{width:440px;max-width:90%;background:#fff;padding:36px;border-radius:14px;box-shadow:0 10px 35px rgba(0,0,0,.09);text-align:center}
+.icon{font-size:46px;margin-bottom:14px}
+h2{margin:0 0 12px;font-size:23px}
+p{color:#666;line-height:1.6;margin:8px 0}
+.step{display:none}.step.active{display:block}
+button{width:100%;padding:14px;margin-top:22px;border:0;border-radius:8px;background:#1a73e8;color:#fff;font-size:16px;cursor:pointer}
+button:hover{background:#1557b0}
+.progress{width:100%;height:10px;margin-top:28px;background:#e5e7eb;border-radius:10px;overflow:hidden}
+.bar{width:0;height:100%;background:#1a73e8;transition:width .25s linear}
+.percent{margin-top:14px;color:#555;font-size:14px}
+.footer{margin-top:26px;font-size:12px;color:#aaa}
+#jumpscare{display:none;position:fixed;inset:0;width:100vw;height:100vh;background:#000;z-index:9999;object-fit:cover}
 </style>
 </head>
-
 <body>
-
 <div class="box">
+  <div class="step active" id="step1">
+    <div class="icon">🌷</div>
+    <h2>Bạn khỏe không?</h2>
+    <p>Dạo này bạn có ổn không?</p>
+    <p>Có những ngày mọi thứ hơi mệt mỏi một chút. Nhưng dù thế nào, bạn cũng đã cố gắng rất nhiều rồi.</p>
+    <button onclick="nextStep()">Mình vẫn ổn ❤️</button>
+  </div>
 
-    <div class="step active" id="step1">
-        <div class="icon">🌷</div>
-        <h2>Bạn khỏe không?</h2>
-        <p>Dạo này bạn có ổn không?</p>
-        <p>
-            Có những ngày mọi thứ hơi mệt mỏi một chút.
-            Nhưng dù thế nào, bạn cũng đã cố gắng rất nhiều rồi.
-        </p>
-        <button onclick="nextStep()">Mình vẫn ổn ❤️</button>
-    </div>
+  <div class="step" id="step2">
+    <div class="icon">💌</div>
+    <h2>Một chút dành cho bạn</h2>
+    <p>Nếu hôm nay bạn đang không vui, thì mong rằng mọi chuyện sẽ sớm tốt hơn.</p>
+    <p>Bạn không cần phải lúc nào cũng mạnh mẽ. Hãy nghỉ ngơi khi bạn cần nhé.</p>
+    <button onclick="nextStep2()">Cảm ơn bạn 🌷</button>
+  </div>
 
-    <div class="step" id="step2">
-        <div class="icon">💌</div>
-        <h2>Một chút dành cho bạn</h2>
-        <p>
-            Nếu hôm nay bạn đang không vui,
-            thì mong rằng mọi chuyện sẽ sớm tốt hơn.
-        </p>
-        <p>
-            Bạn không cần phải lúc nào cũng mạnh mẽ.
-            Hãy nghỉ ngơi khi bạn cần nhé.
-        </p>
-        <button onclick="nextStep2()">Cảm ơn bạn 🌷</button>
-    </div>
+  <div class="step" id="step3">
+    <div class="icon">🎁</div>
+    <h2>Một món quà dành cho bạn</h2>
+    <p>Mình có một món quà nhỏ muốn gửi bạn.</p>
+    <p>Không có gì đặc biệt đâu... chỉ là một chút bất ngờ thôi. 😊</p>
+    <button onclick="startGift()">Nhận món quà 🎁</button>
+  </div>
 
-    <div class="step" id="step3">
-        <div class="icon">🎁</div>
-        <h2>Một món quà dành cho bạn</h2>
-        <p>Mình có một món quà nhỏ muốn gửi bạn.</p>
-        <p>Không có gì đặc biệt đâu... chỉ là một chút bất ngờ thôi. 😊</p>
-        <button onclick="startGift()">Nhận món quà 🎁</button>
-    </div>
+  <div class="step" id="step4">
+    <div class="icon">🎀</div>
+    <h2>Đang chuẩn bị...</h2>
+    <p id="loadingText">Món quà đang được chuẩn bị cho bạn.</p>
+    <div class="progress"><div class="bar" id="bar"></div></div>
+    <div class="percent" id="percent">0%</div>
+  </div>
 
-    <div class="step" id="step4">
-        <div class="icon">🎀</div>
-        <h2>Đang chuẩn bị...</h2>
-        <p id="loadingText">Món quà đang được chuẩn bị cho bạn.</p>
-
-        <div class="progress">
-            <div class="bar" id="bar"></div>
-        </div>
-
-        <div class="percent" id="percent">0%</div>
-    </div>
-
-    <div class="footer">Một món quà nhỏ dành riêng cho bạn ❤️</div>
+  <div class="footer">Một món quà nhỏ dành riêng cho bạn ❤️</div>
 </div>
 
-<!-- Đặt vdff.mp4 cùng thư mục với index.html -->
-<video id="jumpscare" src="vdff.mp4" playsinline preload="auto"></video>
+<video id="jumpscare" src="jumpscare.mp4" playsinline preload="auto"></video>
 
 <script>
-function nextStep() {
-    document.getElementById("step1").classList.remove("active");
-    document.getElementById("step2").classList.add("active");
+function nextStep(){
+  step1.classList.remove("active");
+  step2.classList.add("active");
 }
-
-function nextStep2() {
-    document.getElementById("step2").classList.remove("active");
-    document.getElementById("step3").classList.add("active");
+function nextStep2(){
+  step2.classList.remove("active");
+  step3.classList.add("active");
 }
+function startGift(){
+  step3.classList.remove("active");
+  step4.classList.add("active");
 
-function startGift() {
-    document.getElementById("step3").classList.remove("active");
-    document.getElementById("step4").classList.add("active");
+  let progress=0;
+  const interval=setInterval(()=>{
+    progress += Math.floor(Math.random()*7)+3;
+    if(progress>100) progress=100;
 
-    let progress = 0;
-    const bar = document.getElementById("bar");
-    const percent = document.getElementById("percent");
-    const loadingText = document.getElementById("loadingText");
+    bar.style.width=progress+"%";
+    percent.textContent=progress+"%";
 
-    const interval = setInterval(() => {
-        progress += Math.floor(Math.random() * 7) + 3;
-        if (progress >= 100) progress = 100;
+    if(progress>=20) loadingText.textContent="Chuẩn bị một chút nhé...";
+    if(progress>=45) loadingText.textContent="Món quà sắp hoàn thành rồi...";
+    if(progress>=70) loadingText.textContent="Sắp xong rồi...";
+    if(progress>=90) loadingText.textContent="Hoàn tất! ❤️";
 
-        bar.style.width = progress + "%";
-        percent.textContent = progress + "%";
-
-        if (progress >= 20) loadingText.textContent = "Chuẩn bị một chút nhé...";
-        if (progress >= 45) loadingText.textContent = "Món quà sắp hoàn thành rồi...";
-        if (progress >= 70) loadingText.textContent = "Sắp xong rồi...";
-        if (progress >= 90) loadingText.textContent = "Hoàn tất! ❤️";
-
-        if (progress >= 100) {
-            clearInterval(interval);
-
-            setTimeout(() => {
-                const video = document.getElementById("jumpscare");
-
-                video.style.display = "block";
-                video.muted = false;
-                video.controls = false;
-
-                // Việc người dùng vừa bấm nút "Nhận món quà"
-                // giúp trình duyệt cho phép phát video.
-                video.play().catch(() => {
-                    // Nếu trình duyệt chặn âm thanh, phát lại không tiếng.
-                    video.muted = true;
-                    video.play();
-                });
-            }, 700);
-        }
-    }, 350);
+    if(progress>=100){
+      clearInterval(interval);
+      setTimeout(()=>{
+        jumpscare.style.display="block";
+        jumpscare.muted=false;
+        jumpscare.controls=false;
+        jumpscare.play().catch(()=>{
+          jumpscare.muted=true;
+          jumpscare.play();
+        });
+      },700);
+    }
+  },350);
 }
 </script>
-
 </body>
 </html>
