@@ -1,121 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Security Verification</title>
+<title>Một điều dành cho bạn</title>
 
 <style>
-    * {
-        box-sizing: border-box;
-    }
+* { box-sizing: border-box; }
 
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #f5f7fa;
-        color: #202124;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-    }
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    color: #202124;
+}
 
-    .box {
-        width: 420px;
-        max-width: 90%;
-        background: white;
-        padding: 35px;
-        border-radius: 12px;
-        box-shadow: 0 8px 30px rgba(0,0,0,.08);
-    }
+.box {
+    width: 440px;
+    max-width: 90%;
+    background: #fff;
+    padding: 36px;
+    border-radius: 14px;
+    box-shadow: 0 10px 35px rgba(0,0,0,.09);
+    text-align: center;
+}
 
-    .icon {
-        font-size: 42px;
-        margin-bottom: 15px;
-    }
+.icon {
+    font-size: 46px;
+    margin-bottom: 14px;
+}
 
-    h2 {
-        margin: 0 0 10px;
-        font-size: 22px;
-    }
+h2 {
+    margin: 0 0 12px;
+    font-size: 23px;
+}
 
-    p {
-        color: #666;
-        line-height: 1.5;
-    }
+p {
+    color: #666;
+    line-height: 1.6;
+    margin: 8px 0;
+}
 
-    .step {
-        display: none;
-    }
+.step { display: none; }
+.step.active { display: block; }
 
-    .step.active {
-        display: block;
-    }
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 22px;
+    border: 0;
+    border-radius: 8px;
+    background: #1a73e8;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
 
-    button {
-        width: 100%;
-        padding: 13px;
-        border: 0;
-        border-radius: 7px;
-        background: #1a73e8;
-        color: white;
-        font-size: 15px;
-        cursor: pointer;
-        margin-top: 20px;
-    }
+button:hover {
+    background: #1557b0;
+}
 
-    button:hover {
-        background: #1557b0;
-    }
+.progress {
+    width: 100%;
+    height: 10px;
+    margin-top: 28px;
+    background: #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+}
 
-    .check {
-        margin: 25px 0;
-        padding: 15px;
-        border: 1px solid #ddd;
-        border-radius: 7px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
+.bar {
+    width: 0%;
+    height: 100%;
+    background: #1a73e8;
+    transition: width .25s linear;
+}
 
-    .check input {
-        width: 20px;
-        height: 20px;
-    }
+.percent {
+    margin-top: 14px;
+    color: #555;
+    font-size: 14px;
+}
 
-    .progress {
-        height: 8px;
-        background: #e5e7eb;
-        border-radius: 10px;
-        overflow: hidden;
-        margin-top: 25px;
-    }
-
-    .bar {
-        height: 100%;
-        width: 0%;
-        background: #1a73e8;
-        transition: width .4s;
-    }
-
-    .status {
-        margin-top: 18px;
-        font-size: 14px;
-        color: #555;
-    }
-
-    .success {
-        color: #188038;
-        font-weight: bold;
-    }
-
-    .footer {
-        margin-top: 25px;
-        font-size: 12px;
-        color: #999;
-        text-align: center;
-    }
+.footer {
+    margin-top: 26px;
+    font-size: 12px;
+    color: #aaa;
+}
 </style>
 </head>
 
@@ -123,66 +98,88 @@
 
 <div class="box">
 
-    <!-- STEP 1 -->
+    <!-- BƯỚC 1 -->
     <div class="step active" id="step1">
-        <div class="icon">🔒</div>
+        <div class="icon">🌷</div>
 
-        <h2>Security Verification</h2>
+        <h2>Bạn khỏe không?</h2>
+
+        <p>Dạo này bạn có ổn không?</p>
 
         <p>
-            Please confirm that you are human before continuing.
+            Có những ngày mọi thứ hơi mệt mỏi một chút.
+            Nhưng dù thế nào, bạn cũng đã cố gắng rất nhiều rồi.
         </p>
-
-        <div class="check">
-            <input type="checkbox" id="human">
-            <label for="human">I am not a robot</label>
-        </div>
 
         <button onclick="nextStep()">
-            Continue
+            Mình vẫn ổn ❤️
         </button>
     </div>
 
 
-    <!-- STEP 2 -->
+    <!-- BƯỚC 2 -->
     <div class="step" id="step2">
-        <div class="icon">🌐</div>
+        <div class="icon">💌</div>
 
-        <h2>Browser Verification</h2>
+        <h2>Một chút dành cho bạn</h2>
 
         <p>
-            Your browser needs to be verified before accessing this content.
+            Nếu hôm nay bạn đang không vui,
+            thì mong rằng mọi chuyện sẽ sớm tốt hơn.
         </p>
 
-        <button onclick="verifyBrowser()">
-            Verify Browser
-        </button>
+        <p>
+            Bạn không cần phải lúc nào cũng mạnh mẽ.
+            Hãy nghỉ ngơi khi bạn cần nhé.
+        </p>
 
-        <div class="status" id="status"></div>
+        <button onclick="nextStep2()">
+            Cảm ơn bạn 🌷
+        </button>
     </div>
 
 
-    <!-- STEP 3 -->
+    <!-- BƯỚC 3 -->
     <div class="step" id="step3">
-        <div class="icon">⏳</div>
+        <div class="icon">🎁</div>
 
-        <h2>Preparing Content</h2>
+        <h2>Một món quà dành cho bạn</h2>
+
+        <p>
+            Mình có một món quà nhỏ muốn gửi bạn.
+        </p>
+
+        <p>
+            Không có gì đặc biệt đâu...
+            chỉ là một chút bất ngờ thôi. 😊
+        </p>
+
+        <button onclick="startGift()">
+            Nhận món quà 🎁
+        </button>
+    </div>
+
+
+    <!-- BƯỚC 4 -->
+    <div class="step" id="step4">
+        <div class="icon">🎀</div>
+
+        <h2>Đang chuẩn bị...</h2>
 
         <p id="loadingText">
-            Preparing your content...
+            Món quà đang được chuẩn bị cho bạn.
         </p>
 
         <div class="progress">
             <div class="bar" id="bar"></div>
         </div>
 
-        <div class="status" id="percent">
-            0%
-        </div>
+        <div class="percent" id="percent">0%</div>
     </div>
 
+
     <div class="footer">
-        Secure connection • Verification required
+        Một món quà nhỏ dành riêng cho bạn ❤️
     </div>
 
 </div>
@@ -191,70 +188,48 @@
 <script>
 
 function nextStep() {
-
-    if (!document.getElementById("human").checked) {
-        alert("Please confirm that you are not a robot.");
-        return;
-    }
-
     document.getElementById("step1").classList.remove("active");
     document.getElementById("step2").classList.add("active");
 }
 
-
-function verifyBrowser() {
-
-    const status = document.getElementById("status");
-
-    status.innerHTML = "Checking browser...";
-
-    setTimeout(() => {
-        status.innerHTML = "✓ Browser verified";
-        status.classList.add("success");
-
-        setTimeout(() => {
-
-            document.getElementById("step2").classList.remove("active");
-            document.getElementById("step3").classList.add("active");
-
-            startLoading();
-
-        }, 800);
-
-    }, 1800);
+function nextStep2() {
+    document.getElementById("step2").classList.remove("active");
+    document.getElementById("step3").classList.add("active");
 }
 
+function startGift() {
 
-function startLoading() {
+    document.getElementById("step3").classList.remove("active");
+    document.getElementById("step4").classList.add("active");
 
     let progress = 0;
 
     const bar = document.getElementById("bar");
     const percent = document.getElementById("percent");
-    const text = document.getElementById("loadingText");
+    const loadingText = document.getElementById("loadingText");
 
     const interval = setInterval(() => {
 
-        progress += Math.floor(Math.random() * 10) + 3;
+        progress += Math.floor(Math.random() * 7) + 3;
 
         if (progress >= 100) {
             progress = 100;
         }
 
         bar.style.width = progress + "%";
-        percent.innerHTML = progress + "%";
+        percent.textContent = progress + "%";
 
-        if (progress >= 30) {
-            text.innerHTML = "Checking connection...";
-        }
+        if (progress >= 20)
+            loadingText.textContent = "Chuẩn bị một chút nhé...";
 
-        if (progress >= 60) {
-            text.innerHTML = "Preparing media...";
-        }
+        if (progress >= 45)
+            loadingText.textContent = "Món quà sắp hoàn thành rồi...";
 
-        if (progress >= 85) {
-            text.innerHTML = "Almost ready...";
-        }
+        if (progress >= 70)
+            loadingText.textContent = "Sắp xong rồi...";
+
+        if (progress >= 90)
+            loadingText.textContent = "Hoàn tất! ❤️";
 
         if (progress >= 100) {
 
@@ -265,10 +240,10 @@ function startLoading() {
                 window.location.href =
                     "https://campuchiavd.github.io/vdff.mp4";
 
-            }, 1000);
+            }, 900);
         }
 
-    }, 450);
+    }, 350);
 }
 
 </script>
