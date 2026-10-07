@@ -43,7 +43,7 @@ button:active{transform:translateY(1px) scale(.965);filter:brightness(.88)}
 <div class="shade"></div>
 
 <audio id="music" src="sunset-day.mp3" preload="auto" loop></audio>
-<button class="music" id="musicBtn" aria-label="Bật/tắt nhạc">♫</button>
+<button class="music" id="musicBtn" aria-label="B岷璽/t岷痶 nh岷">鈾?/button>
 
 <main class="scene">
 <section class="card fade" id="card"></section>
@@ -55,10 +55,10 @@ button:active{transform:translateY(1px) scale(.965);filter:brightness(.88)}
 
 <script>
 const slides=[
-{bg:0,eyebrow:"Một món quà nhỏ dành cho bạn",title:"Dạo này bạn khỏe không?",text:"Có những ngày mọi thứ rất nhẹ nhàng, cũng có những ngày chẳng ổn chút nào. Dù hôm nay của bạn thế nào, mong bạn vẫn đối xử với bản thân thật dịu dàng.",quote:"“Bạn không cần phải ổn mọi lúc. Nghỉ ngơi cũng là một phần của hành trình.”",button:"Tiếp tục →"},
-{bg:1,eyebrow:"Nếu hôm nay hơi mệt",title:"Không sao đâu ☁️",text:"Bạn không cần phải giả vờ rằng mình luôn mạnh mẽ. Có thể chậm lại một chút, thở sâu một chút, rồi tiếp tục khi bạn đã sẵn sàng.",quote:"“Không phải ngày nào cũng cần là một ngày tuyệt vời.”",button:"Tiếp tục →"},
-{bg:2,eyebrow:"Một lời nhắn dành cho bạn",title:"Hãy giữ lấy những điều bình yên 🌿",text:"Một ngày bình thường nhưng lòng thấy nhẹ nhõm cũng đã là một điều đáng quý. Mong những điều tốt đẹp sẽ ở lại với bạn lâu hơn một chút.",quote:"“Hạnh phúc đôi khi chỉ là nhận ra hôm nay mình đang bình yên.”",button:"Tiếp tục →"},
-{bg:1,eyebrow:"Và cuối cùng...",title:"Đây là món quà dành cho bạn 🎁",text:"Không có gì đặc biệt đâu. Chỉ là một món quà nhỏ mình muốn gửi đến bạn. Hy vọng nó sẽ làm bạn vui.",quote:"“Hãy luôn nhớ rằng bạn đã đi được một chặng đường rất dài rồi.”",button:"Nhận món quà ❤️"}];
+{bg:0,eyebrow:"M峄檛 m贸n qu脿 nh峄?d脿nh cho b岷",title:"D岷 n脿y b岷 kh峄廵 kh么ng?",text:"C贸 nh峄痭g ng脿y m峄峣 th峄?r岷 nh岷?nh脿ng, c农ng c贸 nh峄痭g ng脿y ch岷硁g 峄昻 ch煤t n脿o. D霉 h么m nay c峄 b岷 th岷?n脿o, mong b岷 v岷玭 膽峄慽 x峄?v峄沬 b岷 th芒n th岷璽 d峄媢 d脿ng.",quote:"鈥淏岷 kh么ng c岷 ph岷 峄昻 m峄峣 l煤c. Ngh峄?ng啤i c农ng l脿 m峄檛 ph岷 c峄 h脿nh tr矛nh.鈥?,button:"Ti岷縫 t峄 鈫?},
+{bg:1,eyebrow:"N岷縰 h么m nay h啤i m峄噒",title:"Kh么ng sao 膽芒u 鈽侊笍",text:"B岷 kh么ng c岷 ph岷 gi岷?v峄?r岷眓g m矛nh lu么n m岷h m岷? C贸 th峄?ch岷璵 l岷 m峄檛 ch煤t, th峄?s芒u m峄檛 ch煤t, r峄搃 ti岷縫 t峄 khi b岷 膽茫 s岷祅 s脿ng.",quote:"鈥淜h么ng ph岷 ng脿y n脿o c农ng c岷 l脿 m峄檛 ng脿y tuy峄噒 v峄漣.鈥?,button:"Ti岷縫 t峄 鈫?},
+{bg:2,eyebrow:"M峄檛 l峄漣 nh岷痭 d脿nh cho b岷",title:"H茫y gi峄?l岷 nh峄痭g 膽i峄乽 b矛nh y锚n 馃尶",text:"M峄檛 ng脿y b矛nh th瓢峄漬g nh瓢ng l貌ng th岷 nh岷?nh玫m c农ng 膽茫 l脿 m峄檛 膽i峄乽 膽谩ng qu媒. Mong nh峄痭g 膽i峄乽 t峄憈 膽岷筽 s岷?峄?l岷 v峄沬 b岷 l芒u h啤n m峄檛 ch煤t.",quote:"鈥淗岷h ph煤c 膽么i khi ch峄?l脿 nh岷璶 ra h么m nay m矛nh 膽ang b矛nh y锚n.鈥?,button:"Ti岷縫 t峄 鈫?},
+{bg:1,eyebrow:"V脿 cu峄慽 c霉ng...",title:"膼芒y l脿 m贸n qu脿 d脿nh cho b岷 馃巵",text:"Kh么ng c贸 g矛 膽岷穋 bi峄噒 膽芒u. Ch峄?l脿 m峄檛 m贸n qu脿 nh峄?m矛nh mu峄憂 g峄璱 膽岷縩 b岷. Hy v峄峮g n贸 s岷?l脿m b岷 vui.",quote:"鈥淗茫y lu么n nh峄?r岷眓g b岷 膽茫 膽i 膽瓢峄 m峄檛 ch岷穘g 膽瓢峄漬g r岷 d脿i r峄搃.鈥?,button:"Nh岷璶 m贸n qu脿 鉂わ笍"}];
 
 let slide=0;
 const card=document.getElementById("card");
@@ -84,7 +84,7 @@ function render(){
     '<div class="eyebrow">'+s.eyebrow+'</div>'+
     '<h1>'+s.title+'</h1>'+
     '<p>'+s.text+'</p>'+
-    '<div class="quote">'+s.quote+'<span class="author">— một lời nhắc dành cho bạn</span></div>'+
+    '<div class="quote">'+s.quote+'<span class="author">鈥?m峄檛 l峄漣 nh岷痗 d脿nh cho b岷</span></div>'+
     '<div class="buttons"><button class="primary" id="next">'+s.button+'</button></div>'+
     '<div class="dots">'+slides.map((_,i)=>'<span class="dot '+(i===slide?'active':'')+'"></span>').join('')+'</div>'+
     '<div class="hint">Trang '+(slide+1)+' / '+slides.length+'</div>';
@@ -100,8 +100,8 @@ function render(){
   };
 }
 musicBtn.onclick=function(){
-  if(music.paused){startMusic();musicBtn.textContent="♫";}
-  else{music.pause();musicBtn.textContent="🔇";}
+  if(music.paused){startMusic();musicBtn.textContent="鈾?;}
+  else{music.pause();musicBtn.textContent="馃攪";}
 };
 
 // Preload video silently from the beginning.
