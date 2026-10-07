@@ -85,7 +85,6 @@ button:active{transform:translateY(1px) scale(.965);filter:brightness(.88)}
     <p id="loadText">Mình đang chuẩn bị mọi thứ cho bạn. Chờ một chút nhé.</p>
     <div class="progress"><div id="bar"></div></div>
     <div class="percent" id="percent">0%</div>
-    <div class="hint">Video được tải hoàn toàn trước khi món quà xuất hiện.</div>
   </section>
 </main>
 
@@ -115,6 +114,22 @@ const slides=[
   title:"Hãy giữ lấy bình yên ấy 🌿",
   text:"Một ngày bình thường nhưng lòng thấy nhẹ nhõm cũng đã là một điều đáng quý. Mong những điều tốt đẹp sẽ ở lại với bạn lâu hơn một chút.",
   quote:"“Hạnh phúc đôi khi chỉ là nhận ra hôm nay mình đang bình yên.”",
+  button:"Tiếp tục →"
+ },
+ {
+  bg:0,
+  eyebrow:"Một chút nữa thôi ✨",
+  title:"Bạn đã đi được khá xa rồi",
+  text:"Đừng quên nhìn lại những điều mình đã cố gắng. Có thể bạn chưa ở nơi mình muốn, nhưng bạn chắc chắn đã đi qua rất nhiều điều để đến được hôm nay.",
+  quote:"“Đi chậm không có nghĩa là bạn đang đi sai hướng.”",
+  button:"Tiếp tục →"
+ },
+ {
+  bg:1,
+  eyebrow:"Và đây là lời cuối cùng",
+  title:"Mong bạn luôn ổn 🌷",
+  text:"Dù cuộc sống phía trước có thế nào, mong bạn vẫn có đủ can đảm để bước tiếp, đủ dịu dàng để yêu thương bản thân, và đủ bình yên để tận hưởng những điều nhỏ bé.",
+  quote:"“Rồi sẽ có những ngày bạn nhìn lại và thấy: à, hóa ra mình đã mạnh mẽ đến vậy.”",
   button:"Nhận món quà 🎁"
  }
 ];
@@ -126,8 +141,9 @@ const music=document.getElementById("music");
 const musicBtn=document.getElementById("musicBtn");
 
 function startMusic(){
-  music.volume=.20;
-  music.play().catch(()=>{});
+  music.volume=.70;
+  music.muted=false;
+  music.play().then(()=>{ musicBtn.textContent="♫"; }).catch(()=>{});
 }
 function setBg(i){
   bgs.forEach((b,n)=>b.classList.toggle("active",n===i));
@@ -159,6 +175,14 @@ function render(){
 }
 render();
 
+// Try to start background music on the first real user interaction.
+let musicStarted=false;
+function ensureMusic(){
+  if(!musicStarted){ musicStarted=true; startMusic(); }
+}
+document.addEventListener("pointerdown",ensureMusic,{once:true});
+document.addEventListener("keydown",ensureMusic,{once:true});
+
 musicBtn.onclick=()=>{
   if(music.paused){startMusic();musicBtn.textContent="♫";}
   else{music.pause();musicBtn.textContent="🔇";}
@@ -188,6 +212,8 @@ async function startGift(){
   const percent=document.getElementById("percent");
   const text=document.getElementById("loadText");
   const video=document.getElementById("scareVideo");
+  video.volume=1.0;
+  video.muted=false;
 
   const minTime=6000;
   const started=performance.now();
