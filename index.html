@@ -5,326 +5,236 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gift for Soul</title>
 <style>
-  * { box-sizing: border-box; }
-  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; }
-  body {
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    color: #fff;
-    background: #111;
-  }
-
-  .bg {
-    position: fixed;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transform: scale(1.04);
-    transition: opacity 2s ease, transform 8s ease;
-    z-index: -3;
-  }
-  .bg.active { opacity: 1; transform: scale(1); }
-  .shade {
-    position: fixed;
-    inset: 0;
-    z-index: -2;
-    background:
-      radial-gradient(circle at 50% 30%, rgba(255,255,255,.08), transparent 45%),
-      linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.50));
-  }
-
-  .scene {
-    min-height: 100%;
-    display: grid;
-    place-items: center;
-    padding: 24px;
-  }
-  .card {
-    width: min(680px, 92vw);
-    padding: 38px 34px;
-    border: 1px solid rgba(255,255,255,.20);
-    border-radius: 28px;
-    background: rgba(15,18,28,.38);
-    backdrop-filter: blur(18px) saturate(130%);
-    -webkit-backdrop-filter: blur(18px) saturate(130%);
-    box-shadow: 0 24px 80px rgba(0,0,0,.30), inset 0 1px 0 rgba(255,255,255,.10);
-    text-align: center;
-    animation: cardIn .8s cubic-bezier(.2,.8,.2,1);
-  }
-  @keyframes cardIn {
-    from { opacity: 0; transform: translateY(18px) scale(.98); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-  }
-
-  .eyebrow {
-    font-size: 13px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    opacity: .72;
-    margin-bottom: 14px;
-  }
-  h1 {
-    font-size: clamp(30px, 5vw, 50px);
-    margin: 0 0 12px;
-    letter-spacing: -.03em;
-  }
-  p {
-    margin: 0 auto;
-    max-width: 540px;
-    font-size: 17px;
-    line-height: 1.7;
-    color: rgba(255,255,255,.88);
-  }
-
-  .box {
-    margin-top: 22px;
-    padding: 22px;
-    border-radius: 20px;
-    background: rgba(255,255,255,.09);
-    border: 1px solid rgba(255,255,255,.13);
-    opacity: 0;
-    transform: translateY(12px);
-    animation: boxIn .65s cubic-bezier(.2,.8,.2,1) forwards;
-    transition: transform .25s ease, background .25s ease, box-shadow .25s ease, border-color .25s ease;
-  }
-  .box:hover {
-    transform: translateY(-3px) scale(1.01);
-    background: rgba(255,255,255,.14);
-    border-color: rgba(255,255,255,.25);
-    box-shadow: 0 12px 34px rgba(0,0,0,.18);
-  }
-  .box:nth-child(1) { animation-delay: .12s; }
-  .box:nth-child(2) { animation-delay: .28s; }
-  .box:nth-child(3) { animation-delay: .44s; }
-  @keyframes boxIn {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 24px;
-  }
-  button {
-    border: 1px solid rgba(255,255,255,.24);
-    color: #fff;
-    background: rgba(255,255,255,.10);
-    padding: 12px 20px;
-    border-radius: 999px;
-    font-size: 15px;
-    cursor: pointer;
-    transition: transform .18s ease, filter .18s ease, background .18s ease, box-shadow .18s ease;
-  }
-  button:hover {
-    background: rgba(255,255,255,.20);
-    filter: brightness(1.18);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,.18);
-  }
-  button:active {
-    transform: translateY(1px) scale(.97);
-    filter: brightness(.88);
-  }
-  button.primary {
-    background: rgba(255,255,255,.92);
-    color: #171717;
-    border-color: transparent;
-    font-weight: 700;
-  }
-  button.primary:hover { background: #fff; }
-
-  .quote {
-    font-style: italic;
-    font-size: 16px;
-  }
-  .author {
-    display: block;
-    margin-top: 8px;
-    opacity: .58;
-    font-size: 13px;
-    font-style: normal;
-  }
-
-  #loader {
-    display: none;
-  }
-  .progress {
-    height: 10px;
-    margin: 22px 0 10px;
-    border-radius: 99px;
-    overflow: hidden;
-    background: rgba(255,255,255,.12);
-    box-shadow: inset 0 1px 3px rgba(0,0,0,.2);
-  }
-  .progress > div {
-    width: 0%;
-    height: 100%;
-    border-radius: inherit;
-    background: linear-gradient(90deg, #fff, #d9e7ff);
-    transition: width .15s linear;
-  }
-  .percent { font-size: 13px; opacity: .68; }
-
-  #scare {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 50;
-    background: #000;
-    place-items: center;
-  }
-  #scare video {
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    display: block;
-  }
-
-  .hint {
-    margin-top: 15px;
-    font-size: 12px;
-    opacity: .52;
-  }
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:#fff;background:#111;
+}
+.bg{
+  position:fixed;inset:0;background-size:cover;background-position:center;
+  opacity:0;transform:scale(1.035);
+  transition:opacity 1.8s ease,transform 7s ease;z-index:-3;
+}
+.bg.active{opacity:1;transform:scale(1)}
+.shade{
+  position:fixed;inset:0;z-index:-2;
+  background:linear-gradient(180deg,rgba(0,0,0,.16),rgba(0,0,0,.48));
+}
+.scene{min-height:100%;display:grid;place-items:center;padding:24px}
+.card{
+  width:min(680px,92vw);padding:42px 36px;
+  border:1px solid rgba(255,255,255,.20);border-radius:28px;
+  background:rgba(15,18,28,.38);backdrop-filter:blur(18px) saturate(130%);
+  -webkit-backdrop-filter:blur(18px) saturate(130%);
+  box-shadow:0 24px 80px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.10);
+  text-align:center;animation:cardIn .7s cubic-bezier(.2,.8,.2,1);
+}
+@keyframes cardIn{from{opacity:0;transform:translateY(20px) scale(.975)}to{opacity:1;transform:none}}
+.fade{animation:fadeIn .55s ease both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;opacity:.72;margin-bottom:15px}
+h1{font-size:clamp(30px,5vw,50px);margin:0 0 14px;letter-spacing:-.03em}
+p{margin:0 auto;max-width:550px;font-size:17px;line-height:1.72;color:rgba(255,255,255,.89)}
+.quote{margin-top:22px;padding:18px 20px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);font-style:italic}
+.author{display:block;margin-top:8px;font-size:12px;opacity:.55;font-style:normal}
+.buttons{display:flex;justify-content:center;gap:12px;margin-top:28px}
+button{
+  min-width:190px;border:1px solid rgba(255,255,255,.26);color:#fff;
+  background:rgba(255,255,255,.12);padding:14px 24px;border-radius:999px;
+  font-size:16px;cursor:pointer;
+  transition:transform .18s ease,filter .18s ease,background .18s ease,box-shadow .18s ease;
+}
+button:hover{background:rgba(255,255,255,.22);filter:brightness(1.16);transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.20)}
+button:active{transform:translateY(1px) scale(.965);filter:brightness(.88)}
+.primary{background:rgba(255,255,255,.94);color:#171717;border-color:transparent;font-weight:750}
+.primary:hover{background:#fff}
+.small{min-width:auto;padding:11px 18px;font-size:14px}
+.dots{display:flex;justify-content:center;gap:7px;margin-top:22px}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);transition:.3s}
+.dot.active{width:24px;border-radius:8px;background:rgba(255,255,255,.9)}
+.hint{margin-top:15px;font-size:12px;opacity:.52}
+#loader{display:none}
+.progress{height:10px;margin:24px 0 10px;border-radius:99px;overflow:hidden;background:rgba(255,255,255,.12)}
+.progress>div{width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#fff,#d9e7ff);transition:width .12s linear}
+.percent{font-size:13px;opacity:.68}
+#scare{display:none;position:fixed;inset:0;z-index:50;background:#000;place-items:center}
+#scare video{width:100vw;height:100vh;object-fit:cover;display:block}
+.music{
+  position:fixed;right:16px;bottom:16px;z-index:10;
+  width:40px;height:40px;min-width:40px;padding:0;font-size:17px;
+  background:rgba(0,0,0,.22);backdrop-filter:blur(10px);opacity:.75
+}
 </style>
 </head>
 <body>
-  <div class="bg active" id="bg1" style="background-image:url('bg1.jpg')"></div>
-  <div class="bg" id="bg2" style="background-image:url('bg2.jpg')"></div>
-  <div class="bg" id="bg3" style="background-image:url('bg3.jpg')"></div>
-  <div class="shade"></div>
+<div class="bg active" id="bg1" style="background-image:url('bg1.jpg')"></div>
+<div class="bg" id="bg2" style="background-image:url('bg2.jpg')"></div>
+<div class="bg" id="bg3" style="background-image:url('bg3.jpg')"></div>
+<div class="shade"></div>
 
-  <main class="scene">
-    <section class="card" id="mainCard">
-      <div class="eyebrow">Một món quà nhỏ dành cho bạn</div>
-      <h1 id="title">Dạo này bạn khỏe không?</h1>
-      <p id="message">Có những ngày mọi thứ ổn, cũng có những ngày chẳng ổn chút nào. Dù hôm nay của bạn thế nào, mong bạn vẫn nhớ dành cho mình một chút dịu dàng.</p>
+<audio id="music" src="sunset-day.mp3" preload="auto" loop></audio>
+<button class="music" id="musicBtn" aria-label="Bật/tắt nhạc">♫</button>
 
-      <div class="box">
-        <strong>🌿 Nếu hôm nay hơi mệt</strong>
-        <p>Thì nghỉ một chút cũng được. Bạn không cần lúc nào cũng phải mạnh mẽ.</p>
-      </div>
+<main class="scene">
+  <section class="card" id="card"></section>
 
-      <div class="box">
-        <strong>☁️ Nếu hôm nay không vui</strong>
-        <p>Rồi ngày này cũng sẽ trôi qua. Không phải chuyện gì cũng cần được giải quyết ngay hôm nay.</p>
-      </div>
+  <section class="card" id="loader">
+    <div class="eyebrow">Món quà cuối cùng</div>
+    <h1>Đang chuẩn bị...</h1>
+    <p id="loadText">Mình đang chuẩn bị mọi thứ cho bạn. Chờ một chút nhé.</p>
+    <div class="progress"><div id="bar"></div></div>
+    <div class="percent" id="percent">0%</div>
+    <div class="hint">Video được tải hoàn toàn trước khi món quà xuất hiện.</div>
+  </section>
+</main>
 
-      <div class="box">
-        <strong>✨ Và nếu hôm nay bạn đang ổn</strong>
-        <p>Vậy thì tốt rồi. Hãy giữ lấy khoảnh khắc bình yên ấy lâu thêm một chút.</p>
-      </div>
-
-      <div class="buttons">
-        <button onclick="answer('Ổn')">Mình ổn 🌱</button>
-        <button onclick="answer('Hơi mệt')">Hơi mệt một chút ☁️</button>
-        <button class="primary" onclick="startGift()">Nhận món quà 🎁</button>
-      </div>
-
-      <div class="hint">Mỗi lựa chọn đều dẫn tới một lời nhắn nhỏ.</div>
-    </section>
-
-    <section class="card" id="loader">
-      <div class="eyebrow">Một chút nữa thôi</div>
-      <h1>Đang chuẩn bị món quà...</h1>
-      <p id="loadText">Mình đang chuẩn bị mọi thứ thật chỉn chu cho bạn.</p>
-      <div class="progress"><div id="bar"></div></div>
-      <div class="percent" id="percent">0%</div>
-      <div class="hint">Video sẽ chỉ bắt đầu khi đã được tải xong.</div>
-    </section>
-  </main>
-
-  <div id="scare">
-    <video id="scareVideo" playsinline preload="auto"></video>
-  </div>
+<div id="scare"><video id="scareVideo" playsinline preload="auto"></video></div>
 
 <script>
-  const backgrounds = [
-    document.getElementById('bg1'),
-    document.getElementById('bg2'),
-    document.getElementById('bg3')
-  ];
-  let bgIndex = 0;
-  setInterval(() => {
-    backgrounds[bgIndex].classList.remove('active');
-    bgIndex = (bgIndex + 1) % backgrounds.length;
-    backgrounds[bgIndex].classList.add('active');
-  }, 6500);
+const slides=[
+ {
+  bg:0,
+  eyebrow:"Một món quà nhỏ dành cho bạn",
+  title:"Dạo này bạn khỏe không?",
+  text:"Có những ngày mọi thứ rất nhẹ nhàng, cũng có những ngày chẳng ổn chút nào. Dù hôm nay của bạn thế nào, mong bạn vẫn đối xử với bản thân thật dịu dàng.",
+  quote:"“Bạn không cần phải ổn mọi lúc. Nghỉ ngơi cũng là một phần của hành trình.”",
+  button:"Tiếp tục →"
+ },
+ {
+  bg:1,
+  eyebrow:"Nếu hôm nay hơi mệt",
+  title:"Không sao đâu ☁️",
+  text:"Bạn không cần phải giả vờ rằng mình luôn mạnh mẽ. Có thể chậm lại một chút, thở sâu một chút, rồi tiếp tục khi bạn đã sẵn sàng.",
+  quote:"“Không phải ngày nào cũng cần là một ngày tuyệt vời.”",
+  button:"Tiếp tục →"
+ },
+ {
+  bg:2,
+  eyebrow:"Nếu hôm nay đang ổn",
+  title:"Hãy giữ lấy bình yên ấy 🌿",
+  text:"Một ngày bình thường nhưng lòng thấy nhẹ nhõm cũng đã là một điều đáng quý. Mong những điều tốt đẹp sẽ ở lại với bạn lâu hơn một chút.",
+  quote:"“Hạnh phúc đôi khi chỉ là nhận ra hôm nay mình đang bình yên.”",
+  button:"Nhận món quà 🎁"
+ }
+];
 
-  const title = document.getElementById('title');
-  const message = document.getElementById('message');
+let slide=0;
+const card=document.getElementById("card");
+const bgs=[document.getElementById("bg1"),document.getElementById("bg2"),document.getElementById("bg3")];
+const music=document.getElementById("music");
+const musicBtn=document.getElementById("musicBtn");
 
-  function answer(type) {
-    if (type === 'Ổn') {
-      title.textContent = 'Vậy thì tốt quá 🌿';
-      message.textContent = 'Hy vọng bạn sẽ giữ được cảm giác này thật lâu. Nhưng dù ngày mai có thế nào, bạn cũng không cần phải hoàn hảo.';
-    } else {
-      title.textContent = 'Không sao đâu ☁️';
-      message.textContent = 'Bạn không cần phải giả vờ rằng mình luôn ổn. Nghỉ một chút, thở chậm lại, rồi đi tiếp khi bạn sẵn sàng.';
-    }
-  }
+function startMusic(){
+  music.volume=.20;
+  music.play().catch(()=>{});
+}
+function setBg(i){
+  bgs.forEach((b,n)=>b.classList.toggle("active",n===i));
+}
+function render(){
+  const s=slides[slide];
+  setBg(s.bg);
+  card.classList.remove("fade");
+  void card.offsetWidth;
+  card.classList.add("fade");
+  card.innerHTML=`
+    <div class="eyebrow">${s.eyebrow}</div>
+    <h1>${s.title}</h1>
+    <p>${s.text}</p>
+    <div class="quote">${s.quote}<span class="author">— một lời nhắc dành cho bạn</span></div>
+    <div class="buttons">
+      <button class="primary" id="next">${s.button}</button>
+    </div>
+    <div class="dots">
+      ${slides.map((_,i)=>`<span class="dot ${i===slide?"active":""}"></span>`).join("")}
+    </div>
+    <div class="hint">Trang ${slide+1} / ${slides.length}</div>
+  `;
+  document.getElementById("next").onclick=()=>{
+    startMusic();
+    if(slide<slides.length-1){slide++;render();}
+    else startGift();
+  };
+}
+render();
 
-  async function startGift() {
-    document.getElementById('mainCard').style.display = 'none';
-    document.getElementById('loader').style.display = 'block';
+musicBtn.onclick=()=>{
+  if(music.paused){startMusic();musicBtn.textContent="♫";}
+  else{music.pause();musicBtn.textContent="🔇";}
+};
 
-    const bar = document.getElementById('bar');
-    const percent = document.getElementById('percent');
-    const loadText = document.getElementById('loadText');
-    const video = document.getElementById('scareVideo');
+/* Preload the jumpscare early, but the visible loading screen still waits
+   for the real video plus a deliberate minimum duration. */
+let videoBlobUrl=null, videoReadyPromise=null;
+function preloadVideo(){
+  videoReadyPromise=(async()=>{
+    const r=await fetch("jumpscare.mp4",{cache:"force-cache"});
+    if(!r.ok) throw new Error("Video không tải được");
+    const blob=await r.blob();
+    videoBlobUrl=URL.createObjectURL(blob);
+    return videoBlobUrl;
+  })();
+}
+preloadVideo();
 
-    try {
-      const response = await fetch('jumpscare.mp4', { cache: 'force-cache' });
-      if (!response.ok) throw new Error('Video không tải được');
+async function startGift(){
+  card.style.display="none";
+  const loader=document.getElementById("loader");
+  loader.style.display="block";
+  loader.classList.remove("fade"); void loader.offsetWidth; loader.classList.add("fade");
 
-      const total = Number(response.headers.get('content-length')) || 0;
-      const reader = response.body.getReader();
-      const chunks = [];
-      let loaded = 0;
+  const bar=document.getElementById("bar");
+  const percent=document.getElementById("percent");
+  const text=document.getElementById("loadText");
+  const video=document.getElementById("scareVideo");
 
-      while (true) {
-        const {done, value} = await reader.read();
-        if (done) break;
-        chunks.push(value);
-        loaded += value.byteLength;
-        if (total) {
-          const pct = Math.min(99, Math.floor(loaded / total * 100));
-          bar.style.width = pct + '%';
-          percent.textContent = pct + '%';
-        }
-      }
+  const minTime=6000;
+  const started=performance.now();
 
-      const blob = new Blob(chunks, { type: 'video/mp4' });
-      video.src = URL.createObjectURL(blob);
-      video.load();
+  try{
+    let progress=0;
+    const timer=setInterval(()=>{
+      const elapsed=performance.now()-started;
+      const timeProgress=Math.min(94,(elapsed/minTime)*94);
+      progress=Math.max(progress,timeProgress);
+      bar.style.width=progress+"%";
+      percent.textContent=Math.floor(progress)+"%";
+    },80);
 
-      await new Promise((resolve, reject) => {
-        if (video.readyState >= 3) return resolve();
-        video.addEventListener('canplaythrough', resolve, { once:true });
-        video.addEventListener('error', reject, { once:true });
+    await videoReadyPromise;
+
+    video.src=videoBlobUrl;
+    video.load();
+
+    await new Promise((resolve,reject)=>{
+      if(video.readyState>=3) return resolve();
+      video.addEventListener("canplaythrough",resolve,{once:true});
+      video.addEventListener("error",reject,{once:true});
+    });
+
+    const remaining=Math.max(0,minTime-(performance.now()-started));
+    await new Promise(r=>setTimeout(r,remaining));
+
+    clearInterval(timer);
+    bar.style.width="100%";
+    percent.textContent="100%";
+    text.textContent="Xong rồi. Đây là món quà dành cho bạn. ✨";
+
+    setTimeout(()=>{
+      document.getElementById("scare").style.display="grid";
+      video.currentTime=0;
+      video.play().catch(()=>{
+        text.textContent="Chạm vào màn hình để tiếp tục.";
+        document.getElementById("scare").onclick=()=>video.play();
       });
-
-      bar.style.width = '100%';
-      percent.textContent = '100%';
-      loadText.textContent = 'Xong rồi. Chúc bạn luôn có những ngày thật nhẹ nhàng.';
-
-      setTimeout(() => {
-        document.getElementById('scare').style.display = 'grid';
-        video.currentTime = 0;
-        video.play().catch(() => {
-          document.getElementById('loadText').textContent = 'Chạm vào màn hình để tiếp tục.';
-          document.getElementById('scare').onclick = () => video.play();
-        });
-      }, 700);
-
-    } catch (err) {
-      console.error(err);
-      loadText.textContent = 'Có lỗi khi tải món quà. Hãy thử tải lại trang.';
-      bar.style.width = '100%';
-      percent.textContent = '!';
-    }
+    },900);
+  }catch(e){
+    console.error(e);
+    text.textContent="Có lỗi khi chuẩn bị món quà. Hãy thử tải lại trang.";
+    percent.textContent="!";
   }
+}
 </script>
 </body>
 </html>
