@@ -5,130 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gift for Soul</title>
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;width:100%;height:100%;overflow:hidden}
-body{font-family:Arial,sans-serif;color:#fff;background:#111}
-.bg{position:fixed;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.035);transition:opacity 1.8s ease,transform 7s ease;z-index:-3}
-.bg.active{opacity:1;transform:scale(1)}
-.shade{position:fixed;inset:0;z-index:-2;background:linear-gradient(180deg,rgba(0,0,0,.14),rgba(0,0,0,.48))}
-.scene{min-height:100%;display:grid;place-items:center;padding:24px}
-.card{width:min(680px,92vw);padding:42px 36px;border:1px solid rgba(255,255,255,.2);border-radius:28px;background:rgba(15,18,28,.38);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 24px 80px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.1);text-align:center}
-.fade{animation:fadeIn .55s ease both}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;opacity:.72;margin-bottom:15px}
-h1{font-size:clamp(30px,5vw,50px);margin:0 0 14px;letter-spacing:-.03em}
-p{margin:0 auto;max-width:550px;font-size:17px;line-height:1.72;color:rgba(255,255,255,.89)}
-.quote{margin-top:22px;padding:18px 20px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);font-style:italic}
-.author{display:block;margin-top:8px;font-size:12px;opacity:.55;font-style:normal}
-.buttons{display:flex;justify-content:center;margin-top:28px}
-button{min-width:200px;border:1px solid rgba(255,255,255,.26);color:#fff;background:rgba(255,255,255,.12);padding:14px 24px;border-radius:999px;font-size:16px;cursor:pointer;transition:transform .18s ease,filter .18s ease,background .18s ease,box-shadow .18s ease}
-button:hover{background:rgba(255,255,255,.22);filter:brightness(1.16);transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.2)}
-button:active{transform:translateY(1px) scale(.965);filter:brightness(.88)}
-.primary{background:rgba(255,255,255,.94);color:#171717;border-color:transparent;font-weight:750}
-.primary:hover{background:#fff}
-.dots{display:flex;justify-content:center;gap:7px;margin-top:22px}
-.dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);transition:.3s}
-.dot.active{width:24px;border-radius:8px;background:rgba(255,255,255,.9)}
-.hint{margin-top:15px;font-size:12px;opacity:.52}
-.music{position:fixed;right:16px;bottom:16px;z-index:10;width:40px;height:40px;min-width:40px;padding:0;font-size:17px;background:rgba(0,0,0,.22);backdrop-filter:blur(10px);opacity:.75}
-#scare{display:none;position:fixed;inset:0;z-index:50;background:#000;place-items:center}
-#scare video{width:100vw;height:100vh;object-fit:cover;display:block}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{font-family:Arial,sans-serif;color:#fff;background:#111}.bg{position:fixed;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.035);transition:opacity 1.8s ease,transform 7s ease;z-index:-3}.bg.active{opacity:1;transform:scale(1)}.shade{position:fixed;inset:0;z-index:-2;background:linear-gradient(180deg,rgba(0,0,0,.14),rgba(0,0,0,.48))}.scene{min-height:100%;display:grid;place-items:center;padding:24px}.card{width:min(680px,92vw);padding:42px 36px;border:1px solid rgba(255,255,255,.2);border-radius:28px;background:rgba(15,18,28,.38);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 24px 80px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.1);text-align:center}.fade{animation:fadeIn .55s ease both}@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}.eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;opacity:.72;margin-bottom:15px}h1{font-size:clamp(30px,5vw,50px);margin:0 0 14px;letter-spacing:-.03em}p{margin:0 auto;max-width:550px;font-size:17px;line-height:1.72;color:rgba(255,255,255,.89)}.quote{margin-top:22px;padding:18px 20px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);font-style:italic}.author{display:block;margin-top:8px;font-size:12px;opacity:.55;font-style:normal}.buttons{display:flex;justify-content:center;margin-top:28px}button{min-width:200px;border:1px solid rgba(255,255,255,.26);color:#fff;background:rgba(255,255,255,.12);padding:14px 24px;border-radius:999px;font-size:16px;cursor:pointer;transition:transform .18s ease,filter .18s ease,background .18s ease,box-shadow .18s ease}button:hover{background:rgba(255,255,255,.22);filter:brightness(1.16);transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.2)}button:active{transform:translateY(1px) scale(.965);filter:brightness(.88)}.primary{background:rgba(255,255,255,.94);color:#171717;border-color:transparent;font-weight:750}.primary:hover{background:#fff}.dots{display:flex;justify-content:center;gap:7px;margin-top:22px}.dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);transition:.3s}.dot.active{width:24px;border-radius:8px;background:rgba(255,255,255,.9)}.hint{margin-top:15px;font-size:12px;opacity:.52}.music{position:fixed;right:16px;bottom:16px;z-index:10;width:40px;height:40px;min-width:40px;padding:0;font-size:17px;background:rgba(0,0,0,.22);backdrop-filter:blur(10px);opacity:.75}#scare{display:none;position:fixed;inset:0;z-index:50;background:#000;place-items:center}#scare video{width:100vw;height:100vh;object-fit:cover;display:block}
 </style>
 </head>
 <body>
-
 <div class="bg active" id="bg1" style="background-image:url('bg1.jpg')"></div>
 <div class="bg" id="bg2" style="background-image:url('bg2.jpg')"></div>
 <div class="bg" id="bg3" style="background-image:url('bg3.jpg')"></div>
 <div class="shade"></div>
-
 <audio id="music" src="sunset-day.mp3" preload="auto" loop></audio>
-<button class="music" id="musicBtn" aria-label="B岷璽/t岷痶 nh岷">鈾?/button>
-
-<main class="scene">
-<section class="card fade" id="card"></section>
-</main>
-
-<div id="scare">
-  <video id="scareVideo" playsinline preload="auto"></video>
-</div>
-
+<button class="music" id="musicBtn" aria-label="Bật/tắt nhạc">🔊</button>
+<main class="scene"><section class="card fade" id="card"></section></main>
+<div id="scare"><video id="scareVideo" playsinline preload="auto"></video></div>
 <script>
 const slides=[
-{bg:0,eyebrow:"M峄檛 m贸n qu脿 nh峄?d脿nh cho b岷",title:"D岷 n脿y b岷 kh峄廵 kh么ng?",text:"C贸 nh峄痭g ng脿y m峄峣 th峄?r岷 nh岷?nh脿ng, c农ng c贸 nh峄痭g ng脿y ch岷硁g 峄昻 ch煤t n脿o. D霉 h么m nay c峄 b岷 th岷?n脿o, mong b岷 v岷玭 膽峄慽 x峄?v峄沬 b岷 th芒n th岷璽 d峄媢 d脿ng.",quote:"鈥淏岷 kh么ng c岷 ph岷 峄昻 m峄峣 l煤c. Ngh峄?ng啤i c农ng l脿 m峄檛 ph岷 c峄 h脿nh tr矛nh.鈥?,button:"Ti岷縫 t峄 鈫?},
-{bg:1,eyebrow:"N岷縰 h么m nay h啤i m峄噒",title:"Kh么ng sao 膽芒u 鈽侊笍",text:"B岷 kh么ng c岷 ph岷 gi岷?v峄?r岷眓g m矛nh lu么n m岷h m岷? C贸 th峄?ch岷璵 l岷 m峄檛 ch煤t, th峄?s芒u m峄檛 ch煤t, r峄搃 ti岷縫 t峄 khi b岷 膽茫 s岷祅 s脿ng.",quote:"鈥淜h么ng ph岷 ng脿y n脿o c农ng c岷 l脿 m峄檛 ng脿y tuy峄噒 v峄漣.鈥?,button:"Ti岷縫 t峄 鈫?},
-{bg:2,eyebrow:"M峄檛 l峄漣 nh岷痭 d脿nh cho b岷",title:"H茫y gi峄?l岷 nh峄痭g 膽i峄乽 b矛nh y锚n 馃尶",text:"M峄檛 ng脿y b矛nh th瓢峄漬g nh瓢ng l貌ng th岷 nh岷?nh玫m c农ng 膽茫 l脿 m峄檛 膽i峄乽 膽谩ng qu媒. Mong nh峄痭g 膽i峄乽 t峄憈 膽岷筽 s岷?峄?l岷 v峄沬 b岷 l芒u h啤n m峄檛 ch煤t.",quote:"鈥淗岷h ph煤c 膽么i khi ch峄?l脿 nh岷璶 ra h么m nay m矛nh 膽ang b矛nh y锚n.鈥?,button:"Ti岷縫 t峄 鈫?},
-{bg:1,eyebrow:"V脿 cu峄慽 c霉ng...",title:"膼芒y l脿 m贸n qu脿 d脿nh cho b岷 馃巵",text:"Kh么ng c贸 g矛 膽岷穋 bi峄噒 膽芒u. Ch峄?l脿 m峄檛 m贸n qu脿 nh峄?m矛nh mu峄憂 g峄璱 膽岷縩 b岷. Hy v峄峮g n贸 s岷?l脿m b岷 vui.",quote:"鈥淗茫y lu么n nh峄?r岷眓g b岷 膽茫 膽i 膽瓢峄 m峄檛 ch岷穘g 膽瓢峄漬g r岷 d脿i r峄搃.鈥?,button:"Nh岷璶 m贸n qu脿 鉂わ笍"}];
-
-let slide=0;
-const card=document.getElementById("card");
-const bgs=[document.getElementById("bg1"),document.getElementById("bg2"),document.getElementById("bg3")];
-const music=document.getElementById("music");
-const musicBtn=document.getElementById("musicBtn");
-const video=document.getElementById("scareVideo");
-
-function startMusic(){
-  music.volume=0.70;
-  music.play().catch(()=>{});
-}
-function setBg(i){
-  bgs.forEach((b,n)=>b.classList.toggle("active",n===i));
-}
-function render(){
-  const s=slides[slide];
-  setBg(s.bg);
-  card.classList.remove("fade");
-  void card.offsetWidth;
-  card.classList.add("fade");
-  card.innerHTML=
-    '<div class="eyebrow">'+s.eyebrow+'</div>'+
-    '<h1>'+s.title+'</h1>'+
-    '<p>'+s.text+'</p>'+
-    '<div class="quote">'+s.quote+'<span class="author">鈥?m峄檛 l峄漣 nh岷痗 d脿nh cho b岷</span></div>'+
-    '<div class="buttons"><button class="primary" id="next">'+s.button+'</button></div>'+
-    '<div class="dots">'+slides.map((_,i)=>'<span class="dot '+(i===slide?'active':'')+'"></span>').join('')+'</div>'+
-    '<div class="hint">Trang '+(slide+1)+' / '+slides.length+'</div>';
-
-  document.getElementById("next").onclick=function(){
-    startMusic();
-    if(slide<slides.length-1){
-      slide++;
-      render();
-    }else{
-      scareNow();
-    }
-  };
-}
-musicBtn.onclick=function(){
-  if(music.paused){startMusic();musicBtn.textContent="鈾?;}
-  else{music.pause();musicBtn.textContent="馃攪";}
-};
-
-// Preload video silently from the beginning.
-fetch("jumpscare.mp4",{cache:"force-cache"})
-.then(function(r){return r.blob();})
-.then(function(blob){
-  video.src=URL.createObjectURL(blob);
-  video.load();
-})
-.catch(function(){
-  video.src="jumpscare.mp4";
-  video.load();
-});
-
-function scareNow(){
-  const scare=document.getElementById("scare");
-  music.pause();
-  music.currentTime=0;
-  scare.style.display="grid";
-  video.currentTime=0;
-  const p=video.play();
-  if(p){
-    p.catch(function(){
-      scare.onclick=function(){video.play();};
-    });
-  }
-}
+{bg:0,eyebrow:"Một món quà nhỏ dành cho bạn",title:"Dạo này bạn khỏe không?",text:"Có những ngày mọi thứ thật nhẹ nhàng, cũng có những ngày chẳng chút nào. Dù hôm nay của bạn thế nào, mong bạn vẫn có thể đối xử với bản thân thật dịu dàng.",quote:"“Bạn không cần phải ổn mọi lúc. Nghỉ ngơi cũng là một phần của hành trình.”",button:"Tiếp tục →"},
+{bg:1,eyebrow:"Nếu hôm nay hơi mệt",title:"Không sao đâu 🫂",text:"Bạn không cần phải giả vờ rằng mình luôn mạnh mẽ. Có thể chậm lại một chút, thở sâu một chút, rồi tiếp tục khi bạn đã sẵn sàng.",quote:"“Không phải ngày nào cũng cần phải là một ngày tuyệt vời.”",button:"Tiếp tục →"},
+{bg:2,eyebrow:"Một lời nhắn dành cho bạn",title:"Hãy giữ lại những điều bình yên 🌤️",text:"Một ngày bình thường nhưng lòng thấy nhẹ nhõm cũng đã là một điều đáng quý. Mong những điều tốt đẹp từ hôm nay sẽ ở lại với bạn lâu hơn một chút.",quote:"“Hạnh phúc đôi khi chỉ là nhận ra hôm nay mình đang bình yên.”",button:"Tiếp tục →"},
+{bg:1,eyebrow:"Và cuối cùng...",title:"Đây là món quà dành cho bạn 🎁",text:"Không có gì đặc biệt đâu. Chỉ là một món quà nhỏ mà mình muốn gửi đến bạn. Hy vọng nó sẽ làm bạn vui.",quote:"“Hãy luôn nhớ rằng bạn đã đi được một chặng đường rất dài rồi.”",button:"Nhận món quà 💝"}
+];
+let slide=0;const card=document.getElementById("card");const bgs=[document.getElementById("bg1"),document.getElementById("bg2"),document.getElementById("bg3")];const music=document.getElementById("music");const musicBtn=document.getElementById("musicBtn");const video=document.getElementById("scareVideo");
+function startMusic(){music.volume=0.70;music.play().catch(()=>{});}function setBg(i){bgs.forEach((b,n)=>b.classList.toggle("active",n===i));}
+function render(){const s=slides[slide];setBg(s.bg);card.classList.remove("fade");void card.offsetWidth;card.classList.add("fade");card.innerHTML='<div class="eyebrow">'+s.eyebrow+'</div>'+'<h1>'+s.title+'</h1>'+'<p>'+s.text+'</p>'+'<div class="quote">'+s.quote+'<span class="author">— Một lời nhắn dành cho bạn</span></div>'+'<div class="buttons"><button class="primary" id="next">'+s.button+'</button></div>'+'<div class="dots">'+slides.map((_,i)=>'<span class="dot '+(i===slide?'active':'')+'"></span>').join('')+'</div>'+'<div class="hint">Trang '+(slide+1)+' / '+slides.length+'</div>';document.getElementById("next").onclick=function(){startMusic();if(slide<slides.length-1){slide++;render();}else{scareNow();}};}
+musicBtn.onclick=function(){if(music.paused){startMusic();musicBtn.textContent="🔊";}else{music.pause();musicBtn.textContent="🔇";}};
+fetch("jumpscare.mp4",{cache:"force-cache"}).then(r=>r.blob()).then(blob=>{video.src=URL.createObjectURL(blob);video.load();}).catch(()=>{video.src="jumpscare.mp4";video.load();});
+function scareNow(){const scare=document.getElementById("scare");music.pause();music.currentTime=0;scare.style.display="grid";video.currentTime=0;const p=video.play();if(p){p.catch(()=>{scare.onclick=function(){video.play();};});}}
 render();
 </script>
 </body>
